@@ -26,7 +26,7 @@ class AnagramsTest(unittest.TestCase):
             print "generating anagrams of " + wordList[x]
             getAnagrams(wordList, wordList[x])
         print "generating anagrams of imperturbableness" 
-        #getAnagrams(wordList, "imperturbableness")
+        getAnagrams(wordList, "imperturbableness")
         print "generating anagrams of incredible" 
         getAnagrams(wordList, "incredible")
         self.assertEqual(1, 1)

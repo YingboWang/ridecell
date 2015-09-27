@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
+#remove all letters in word2 from word1 and return
 def subWord(word1, word2):
-    #remove all letters in word2 from word1 and return
     if len(word1)<= len(word2):
         return []
     result = [word1[i] for i in range(len(word1))]
@@ -37,15 +37,14 @@ def getMaxAna(sortDict, word, maxDict):
                     if not z in prevWords:
                         maxAna = z + ' ' + ' '.join(prevWords)
                         numWords = len(prevWords) + 1
-                        
                         break
     maxDict[word] = maxAna
     return maxAna
 
 def getWordList(fname):
-	with open(fname) as f:
-		wordList = [line.rstrip() for line in f]
-	return wordList
+    with open(fname) as f:
+        wordList = [line.rstrip() for line in f]
+    return wordList
 	
 def getAnagrams(wordList, word):
 	if len(word) < 2 or (not word in wordList):
@@ -63,9 +62,9 @@ def getAnagrams(wordList, word):
 				else:
 					sortDict[sortX] = [x]
 	twoAna = getTwoAna(sortDict, sortWord)
-	print twoAna
-
+	
 	maxDict = {}
-	print getMaxAna(sortDict, sortWord, maxDict)
+	maxAna = getMaxAna(sortDict, sortWord, maxDict)
+	return [twoAna, maxAna]
 
 
