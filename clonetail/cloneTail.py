@@ -75,7 +75,7 @@ def tail(fname, outLine):
     for x in lines:
         print x
 
-usage = "tail - output the last part of files\nusage: %prog  [-q] [-b # | -c # | -n #] [file ...]"
+usage = "tail - output the last part of files\n if no files are given, read from stdin.\nusage: %prog  [-q] [-b # | -c # | -n #] [file ...]"
 
 parser = OptionParser(usage=usage)
 
@@ -84,25 +84,23 @@ parser.add_option("-q", "--quiet", action="store_true",
                   dest = "q")
 
 parser.add_option("-n", "--line", type = "int",
-                  help = " get tail lines from File",
+                  help = " get tail line(s) from File",
                   dest = "n")
 parser.add_option("-b", "--block", type = "int",
-                  help = " get tail block from File",
+                  help = " get tail block(s) from File",
                   dest = "b")
 parser.add_option("-c", "--bytes", type = "int",
                   help = "output the last K bytes; or use -c +K to output bytes starting with the Kth of each file", 
                   dest = "c")
 
-   
-              
 options, args = parser.parse_args()
+
+if (options.b != None and options.n != None) or (options.b != None and options.c != None) or (options.c != None and options.n != None):
+    parser.print_help()
+    exit(-1)
 
 if (options.n == None  and options.b == None and options.c == None):
     options.n = 10
-
-if (options.b != None and options.n != None):
-    parser.print_help()
-    exit(-1)
 
 if (options.n != None) :
     getLastLines(options, args)
