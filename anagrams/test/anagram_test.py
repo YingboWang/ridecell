@@ -17,11 +17,17 @@ class AnagramsTest(unittest.TestCase):
         self.assertEqual(joinw, expectedOutput)
 
 
-    def ttest_2(self):
+    def test_2(self):
         print "testing anagrams"
         wordList = getWordList("data/words.txt")
-        print wordList[10]
-        getAnagrams(wordList, "abacination")
-        print wordList[10]
+        for i in range(15):
+
+            x = random.randint(0, len(wordList) - 1)
+            print "generating anagrams of " + wordList[x]
+            getAnagrams(wordList, wordList[x])
+        print "generating anagrams of imperturbableness" 
+        #getAnagrams(wordList, "imperturbableness")
+        print "generating anagrams of incredible" 
+        getAnagrams(wordList, "incredible")
         self.assertEqual(1, 1)
 
